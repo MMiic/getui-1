@@ -2,32 +2,14 @@
 /**
  * VERSION 3.3.2.1
  */
-/*header("Content-Type: text/html; charset=utf-8");
-require_once(dirname(__FILE__) . '/' . 'protobuf/pb_message.php');
-require_once(dirname(__FILE__) . '/' . 'igetui/IGt.Req.php');
-require_once(dirname(__FILE__) . '/' . 'igetui/IGt.Message.php');
-require_once(dirname(__FILE__) . '/' . 'igetui/IGt.AppMessage.php');
-require_once(dirname(__FILE__) . '/' . 'igetui/IGt.ListMessage.php');
-require_once(dirname(__FILE__) . '/' . 'igetui/IGt.SingleMessage.php');
-require_once(dirname(__FILE__) . '/' . 'igetui/IGt.Target.php');
-require_once(dirname(__FILE__) . '/' . 'igetui/template/IGt.BaseTemplate.php');
-require_once(dirname(__FILE__) . '/' . 'igetui/template/IGt.LinkTemplate.php');
-require_once(dirname(__FILE__) . '/' . 'igetui/template/IGt.NotificationTemplate.php');
-require_once(dirname(__FILE__) . '/' . 'igetui/template/IGt.TransmissionTemplate.php');
-require_once(dirname(__FILE__) . '/' . 'igetui/template/IGt.NotyPopLoadTemplate.php');
-require_once(dirname(__FILE__) . '/' . 'igetui/template/IGt.APNTemplate.php');
-require_once(dirname(__FILE__) . '/' . 'igetui/utils/GTConfig.php');
-require_once(dirname(__FILE__) . '/' . 'igetui/utils/HttpManager.php');
-require_once(dirname(__FILE__) . '/' . 'igetui/utils/ApiUrlRespectUtils.php');
-require_once(dirname(__FILE__) . '/' . 'igetui/utils/LangUtils.php');*/
+
 namespace wh\getui;
 
-use wh\getui\protobuf\PBMessage;
-use wh\getui\core\IGtMessage;
-use wh\getui\core\IGtAppMessage;
 use wh\getui\core\IGtListMessage;
-use wh\getui\core\IGtSingleMessage;
-use wh\getui\core\IGtTarget;
+use wh\getui\utils\GTConfig;
+use wh\getui\utils\HttpManager;
+use wh\getui\utils\ApiUrlRespectUtils;
+use wh\getui\utils\LangUtils;
 
 Class IGeTui
 {
@@ -47,9 +29,7 @@ Class IGeTui
         if ($domainUrl==NULL || strlen($domainUrl) == 0)
         {
             $this->domainUrlList =  GTConfig::getDefaultDomainUrl();
-        }
-        else
-        {
+        } else {
             $this->domainUrlList = array($domainUrl);
         }
         $this->initOSDomain(null);
@@ -59,15 +39,13 @@ Class IGeTui
     {
         if($hosts == null || count($hosts) == 0)
         {
-            $hosts = IGeTui::$appkeyUrlList[$this->appkey];
+            $hosts = isset(IGeTui::$appkeyUrlList[$this->appkey]) ? IGeTui::$appkeyUrlList[$this->appkey] : null;
             if($hosts == null || count($hosts) == 0)
             {
                 $hosts = $this->getOSPushDomainUrlList($this->domainUrlList,$this->appkey);
                 IGeTui::$appkeyUrlList[$this->appkey] = $hosts;
             }
-        }
-        else
-        {
+        } else {
             IGeTui::$appkeyUrlList[$this->appkey] = $hosts;
         }
         $this->host = ApiUrlRespectUtils::getFastest($this->appkey, $hosts);
@@ -91,9 +69,7 @@ Class IGeTui
                 {
                     break;
                 }
-            }
-            catch (Exception $e)
-            {
+            } catch (Exception $e) {
                 $ex = $e;
             }
         }
@@ -119,14 +95,10 @@ Class IGeTui
                     {
                         $rep = HttpManager::httpPostJson($url, $data, $gzip);
                     }
-                }
-                catch (Exception $e)
-                {
+                } catch (Exception $e) {
                     throw new Exception("连接异常".$e);
                 }
-            }
-            else if('domain_error' == $rep['result'])
-            {
+            } else if('domain_error' == $rep['result']) {
                 $this->initOSDomain($rep["osList"]);
                 $rep = HttpManager::httpPostJson($url, $data, $gzip);
             }
@@ -134,7 +106,7 @@ Class IGeTui
         return $rep;
     }
 
-   public  function connect()
+   public function connect()
     {
         $timeStamp = $this->micro_time();
         // 计算sign值
@@ -150,7 +122,7 @@ Class IGeTui
         if ('success' == $rep['result']) {
             return true;
         }
-        throw new Exception("appKey Or masterSecret is Auth Failed");
+        throw new \Exception("appKey Or masterSecret is Auth Failed");
     }
 
     public function close()
@@ -169,7 +141,7 @@ Class IGeTui
      ***/
     public function pushMessageToSingle($message, $target, $requestId = null)
     {
-        if($requestId == null || trim($requestId) == "")
+        if($requestId == null || ( is_string($requestId)  && trim($requestId) == "") )
         {
             $requestId = uniqid();
         }
@@ -177,20 +149,21 @@ Class IGeTui
         $params["action"] = "pushMessageToSingleAction";
         $params["appkey"] = $this -> appkey;
         $params["requestId"] = $requestId;
-        $params["clientData"] = base64_encode($message->get_data()->get_transparent());
-        $params["transmissionContent"] = $message->get_data()->get_transmissionContent();
-        $params["isOffline"] = $message->get_isOffline();
-        $params["offlineExpireTime"] = $message->get_offlineExpireTime();
+        $params["clientData"] = base64_encode($message->getData()->getTransparent());
+        $params["transmissionContent"] = $message->getData()->getTransmissionContent();
+        $params["isOffline"] = $message->getIsOffline();
+        $params["offlineExpireTime"] = $message->getOfflineExpireTime();
         // 增加pushNetWorkType参数(0:不限;1:wifi;2:4G/3G/2G)
-        $params["pushNetWorkType"] = $message->get_pushNetWorkType();
+        $params["pushNetWorkType"] = $message->getPushNetWorkType();
 
         //
-        $params["appId"] = $target->get_appId();
-        $params["clientId"] = $target->get_clientId();
-        $params["alias"] = $target->get_alias();
+        $params["appId"] = $target->getAppId();
+        $params["clientId"] = $target->getClientId();
+        $params["alias"] = $target->getAlias();
+
         // 默认都为消息
         $params["type"] = 2;
-        $params["pushType"] = $message->get_data()->get_pushType();
+        $params["pushType"] = $message->getData()->getPushType();
         return $this->httpPostJSON($this->host,$params);
     }
 
@@ -247,8 +220,8 @@ Class IGeTui
         $appId = null;
         foreach($targetList as $target)
         {
-            $targetCid = $target->get_clientId();
-            $targetAlias = $target->get_alias();
+            $targetCid = $target->getClientId();
+            $targetAlias = $target->getAlias();
             if($targetCid != null)
             {
                 array_push($clientIdList,$targetCid);
@@ -258,7 +231,7 @@ Class IGeTui
             }
             if($appId == null)
             {
-                $appId = $target->get_appId();
+                $appId = $target->getAppId();
             }
 
         }
@@ -319,38 +292,39 @@ Class IGeTui
         $params = array();
         if (!is_null($taskGroupName) && trim($taskGroupName) != ""){
             if(strlen($taskGroupName) > 40){
-                throw new Exception("TaskGroupName is OverLimit 40");
+                throw new \Exception("TaskGroupName is OverLimit 40");
             }
             $params["taskGroupName"] = $taskGroupName;
         }
         $params["action"] = "getContentIdAction";
         $params["appkey"] = $this->appkey;
-        $params["clientData"] = base64_encode($message->get_data()->get_transparent());
-        $params["transmissionContent"] = $message->get_data()->get_transmissionContent();
-        $params["isOffline"] = $message->get_isOffline();
-        $params["offlineExpireTime"] = $message->get_offlineExpireTime();
+        $params["clientData"] = base64_encode($message->getData()->getTransparent());
+        $params["transmissionContent"] = $message->getData()->getTransmissionContent();
+        $params["isOffline"] = $message->getIsOffline();
+        $params["offlineExpireTime"] = $message->getOfflineExpireTime();
         // 增加pushNetWorkType参数(0:不限;1:wifi;2:4G/3G/2G)
-        $params["pushNetWorkType"] = $message->get_pushNetWorkType();
-        $params["pushType"] = $message->get_data()->get_pushType();
+        $params["pushNetWorkType"] = $message->getPushNetWorkType();
+        $params["pushType"] = $message->getData()->getPushType();
         $params["type"] = 2;
         //contentType 1是appMessage，2是listMessage
         if ($message instanceof IGtListMessage){
             $params["contentType"] = 1;
         } else {
             $params["contentType"] = 2;
-            $params["appIdList"] = $message->get_appIdList();
-            $params["phoneTypeList"] = $message->get_phoneTypeList();
-            $params["provinceList"] = $message->get_provinceList();
-            $params["tagList"] = $message->get_tagList();
-            $params["speed"] = $message->get_speed();
+            $params["appIdList"] = $message->getAppIdList();
+            $params["phoneTypeList"] = $message->getPhoneTypeList();
+            $params["provinceList"] = $message->getProvinceList();
+            $params["tagList"] = $message->getTagList();
+            $params["speed"] = $message->getSpeed();
 
         }
         $rep = $this->httpPostJSON($this->host,$params);
         if($rep['result'] == 'ok')
         {
            return $rep['contentId'];
-        }else{
-            throw new Exception("host:[".$this->host."]" + "获取contentId失败:".$rep);
+        } else {
+            //var_dump($rep);exit;
+            throw new \Exception("host:[".$this->host."]" + "获取contentId失败:".$rep['result']);
         }
     }
 
@@ -366,7 +340,7 @@ Class IGeTui
         $params['appId'] = $appId;
         $params['appkey'] = $this->appkey;
         $params['DT'] = $deviceToken;
-        $params['PI'] = base64_encode($message->get_data()->get_pushInfo()->SerializeToString());
+        $params['PI'] = base64_encode($message->getData()->getPushInfo()->SerializeToString());
         return $this->httpPostJSON($this->host,$params);
     }
 
@@ -401,7 +375,7 @@ Class IGeTui
         $params["action"] = "apnGetContentIdAction";
         $params["appkey"] = $this->appkey;
         $params["appId"] = $appId;
-        $params["PI"] = base64_encode($message->get_data()->get_pushInfo()->SerializeToString());
+        $params["PI"] = base64_encode($message->getData()->getPushInfo()->SerializeToString());
         $rep = $this->httpPostJSON($this->host,$params);
         if($rep['result'] == 'ok'){
             return $rep['contentId'];
@@ -427,8 +401,8 @@ Class IGeTui
         $aliasList = array();
         foreach($targetList as  $target) {
             $user = array();
-            $user["cid"] = $target->get_clientId();
-            $user["alias"] = $target->get_alias();
+            $user["cid"] = $target->getClientId();
+            $user["alias"] = $target->getAlias();
             array_push($aliasList, $user);
         }
         $params["action"] = "alias_bind_list";
@@ -496,7 +470,7 @@ Class IGeTui
 
     public function queryAppPushDataByDate($appId, $date){
         if(!LangUtils::validateDate($date)){
-            throw new Exception("DateError|".$date);
+            throw new \Exception("DateError|".$date);
         }
         $params = array();
         $params["action"] = "queryAppPushData";
@@ -508,7 +482,7 @@ Class IGeTui
 
     public function queryAppUserDataByDate($appId, $date){
         if(!LangUtils::validateDate($date)){
-            throw new Exception("DateError|".$date);
+            throw new \Exception("DateError|".$date);
         }
         $params = array();
         $params["action"] = "queryAppUserData";

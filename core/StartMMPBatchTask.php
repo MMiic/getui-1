@@ -9,11 +9,11 @@ class StartMMPBatchTask extends PBMessage
   public function __construct($reader=null)
   {
     parent::__construct($reader);
-    $this->fields["1"] = "MMPMessage";
+    $this->fields["1"] = "\\wh\\getui\\core\\MMPMessage";
     $this->values["1"] = "";
-    $this->fields["2"] = "PBInt";
+    $this->fields["2"] = "\\wh\\getui\\protobuf\\type\\PBInt";
     $this->values["2"] = "";
-    $this->fields["3"] = "PBString";
+    $this->fields["3"] = "\\wh\\getui\\protobuf\\type\\PBString";
     $this->values["3"] = "";
   }
   function message()

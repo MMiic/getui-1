@@ -1,5 +1,5 @@
 <?php
-namespace wh\protobuf\reader;
+namespace wh\getui\protobuf\reader;
 
 /**
  * Reads string input

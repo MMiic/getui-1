@@ -6,198 +6,203 @@ use wh\getui\protobuf\type\PBBool;
 
 class ActionChain extends PBMessage
 {
-    var $wired_type = PBMessage::WIRED_LENGTH_DELIMITED;
+    public $wired_type = PBMessage::WIRED_LENGTH_DELIMITED;
+
     public function __construct($reader=null)
     {
         parent::__construct($reader);
-        $this->fields["1"] = "PBInt";
+        $this->fields["1"] = "\\wh\\getui\\protobuf\\type\\PBInt";
         $this->values["1"] = "";
-        $this->fields["2"] = "ActionChain_Type";
+        $this->fields["2"] = "\\wh\\getui\\core\\ActionChainType";
         $this->values["2"] = "";
-        $this->fields["3"] = "PBInt";
+        $this->fields["3"] = "\\wh\\getui\\protobuf\\type\\PBInt";
         $this->values["3"] = "";
-        $this->fields["100"] = "PBString";
+        $this->fields["100"] = "\\wh\\getui\\protobuf\\type\\PBString";
         $this->values["100"] = "";
-        $this->fields["101"] = "PBString";
+        $this->fields["101"] = "\\wh\\getui\\protobuf\\type\\PBString";
         $this->values["101"] = "";
-        $this->fields["102"] = "PBString";
+        $this->fields["102"] = "\\wh\\getui\\protobuf\\type\\PBString";
         $this->values["102"] = "";
-        $this->fields["103"] = "PBString";
+        $this->fields["103"] = "\\wh\\getui\\protobuf\\type\\PBString";
         $this->values["103"] = "";
-        $this->fields["104"] = "PBBool";
+        $this->fields["104"] = "\\wh\\getui\\protobuf\\type\\PBBool";
         $this->values["104"] = "";
-        $this->fields["105"] = "PBBool";
+        $this->fields["105"] = "\\wh\\getui\\protobuf\\type\\PBBool";
         $this->values["105"] = "";
-        $this->fields["106"] = "PBBool";
+        $this->fields["106"] = "\\wh\\getui\\protobuf\\type\\PBBool";
         $this->values["106"] = "";
-        $this->fields["107"] = "PBString";
+        $this->fields["107"] = "\\wh\\getui\\protobuf\\type\\PBString";
         $this->values["107"] = "";
-        $this->fields["120"] = "PBString";
+        $this->fields["120"] = "\\wh\\getui\\protobuf\\type\\PBString";
         $this->values["120"] = "";
-        $this->fields["121"] = "Button";
+        $this->fields["121"] = "\\wh\\getui\\core\\Button";
         $this->values["121"] = array();
-        $this->fields["140"] = "PBString";
+        $this->fields["140"] = "\\wh\\getui\\protobuf\\type\\PBString";
         $this->values["140"] = "";
-        $this->fields["141"] = "AppStartUp";
+        $this->fields["141"] = "\\wh\\getui\\core\\AppStartUp";
         $this->values["141"] = "";
-        $this->fields["142"] = "PBBool";
+        $this->fields["142"] = "\\wh\\getui\\protobuf\\type\\PBBool";
         $this->values["142"] = "";
-        $this->fields["143"] = "PBInt";
+        $this->fields["143"] = "\\wh\\getui\\protobuf\\type\\PBInt";
         $this->values["143"] = "";
-        $this->fields["160"] = "PBString";
+        $this->fields["160"] = "\\wh\\getui\\protobuf\\type\\PBString";
         $this->values["160"] = "";
-        $this->fields["161"] = "PBString";
+        $this->fields["161"] = "\\wh\\getui\\protobuf\\type\\PBString";
         $this->values["161"] = "";
-        $this->fields["162"] = "PBBool";
+        $this->fields["162"] = "\\wh\\getui\\protobuf\\type\\PBBool";
         $this->values["162"] = "";
         $this->values["162"] = new PBBool();
         $this->values["162"]->value = false;
-        $this->fields["180"] = "PBString";
+        $this->fields["180"] = "\\wh\\getui\\protobuf\\type\\PBString";
         $this->values["180"] = "";
-        $this->fields["181"] = "PBString";
+        $this->fields["181"] = "\\wh\\getui\\protobuf\\type\\PBString";
         $this->values["181"] = "";
-        $this->fields["182"] = "PBInt";
+        $this->fields["182"] = "\\wh\\getui\\protobuf\\type\\PBInt";
         $this->values["182"] = "";
-        $this->fields["183"] = "ActionChain_SMSStatus";
+        $this->fields["183"] = "\\wh\\getui\\core\\ActionChainSMSStatus";
         $this->values["183"] = "";
-        $this->fields["200"] = "PBInt";
+        $this->fields["200"] = "\\wh\\getui\\protobuf\\type\\PBInt";
         $this->values["200"] = "";
-        $this->fields["201"] = "PBInt";
+        $this->fields["201"] = "\\wh\\getui\\protobuf\\type\\PBInt";
         $this->values["201"] = "";
-        $this->fields["220"] = "PBString";
+        $this->fields["220"] = "\\wh\\getui\\protobuf\\type\\PBString";
         $this->values["220"] = "";
-        $this->fields["223"] = "PBBool";
+        $this->fields["223"] = "\\wh\\getui\\protobuf\\type\\PBBool";
         $this->values["223"] = "";
-        $this->fields["225"] = "PBBool";
+        $this->fields["225"] = "\\wh\\getui\\protobuf\\type\\PBBool";
         $this->values["225"] = "";
-        $this->fields["226"] = "PBBool";
+        $this->fields["226"] = "\\wh\\getui\\protobuf\\type\\PBBool";
         $this->values["226"] = "";
-        $this->fields["227"] = "PBBool";
+        $this->fields["227"] = "\\wh\\getui\\protobuf\\type\\PBBool";
         $this->values["227"] = "";
-        $this->fields["241"] = "PBString";
+        $this->fields["241"] = "\\wh\\getui\\protobuf\\type\\PBString";
         $this->values["241"] = "";
-        $this->fields["242"] = "PBString";
+        $this->fields["242"] = "\\wh\\getui\\protobuf\\type\\PBString";
         $this->values["242"] = "";
-        $this->fields["260"] = "PBBool";
+        $this->fields["260"] = "\\wh\\getui\\protobuf\\type\\PBBool";
         $this->values["260"] = "";
-        $this->fields["280"] = "PBString";
+        $this->fields["280"] = "\\wh\\getui\\protobuf\\type\\PBString";
         $this->values["280"] = "";
-        $this->fields["281"] = "PBString";
+        $this->fields["281"] = "\\wh\\getui\\protobuf\\type\\PBString";
         $this->values["281"] = "";
-        $this->fields["300"] = "PBBool";
+        $this->fields["300"] = "\\wh\\getui\\protobuf\\type\\PBBool";
         $this->values["300"] = "";
-        $this->fields["320"] = "PBString";
+        $this->fields["320"] = "\\wh\\getui\\protobuf\\type\\PBString";
         $this->values["320"] = "";
-        $this->fields["340"] = "PBInt";
+        $this->fields["340"] = "\\wh\\getui\\protobuf\\type\\PBInt";
         $this->values["340"] = "";
-        $this->fields["360"] = "PBString";
+        $this->fields["360"] = "\\wh\\getui\\protobuf\\type\\PBString";
         $this->values["360"] = "";
     }
-    function actionId()
+
+    function getActionId()
     {
         return $this->_get_value("1");
     }
-    function set_actionId($value)
+
+    function setActionId($value)
     {
         return $this->_set_value("1", $value);
     }
-    function type()
+
+    function getType()
     {
         return $this->_get_value("2");
     }
-    function set_type($value)
+
+    function setType($value)
     {
         return $this->_set_value("2", $value);
     }
-    function next()
+    function getNext()
     {
         return $this->_get_value("3");
     }
-    function set_next($value)
+    function setNext($value)
     {
         return $this->_set_value("3", $value);
     }
-    function logo()
+    function getLogo()
     {
         return $this->_get_value("100");
     }
-    function set_logo($value)
+    function setLogo($value)
     {
         return $this->_set_value("100", $value);
     }
-    function logoURL()
+    function getLogoURL()
     {
         return $this->_get_value("101");
     }
-    function set_logoURL($value)
+    function setLogoURL($value)
     {
         return $this->_set_value("101", $value);
     }
-    function title()
+    function getTitle()
     {
         return $this->_get_value("102");
     }
-    function set_title($value)
+    function setTitle($value)
     {
         return $this->_set_value("102", $value);
     }
-    function text()
+    function getText()
     {
         return $this->_get_value("103");
     }
-    function set_text($value)
+    function setText($value)
     {
         return $this->_set_value("103", $value);
     }
-    function clearable()
+    function getClearable()
     {
         return $this->_get_value("104");
     }
-    function set_clearable($value)
+    function setClearable($value)
     {
         return $this->_set_value("104", $value);
     }
-    function ring()
+    function getRing()
     {
         return $this->_get_value("105");
     }
-    function set_ring($value)
+    function setRing($value)
     {
         return $this->_set_value("105", $value);
     }
-    function buzz()
+    function getBuzz()
     {
         return $this->_get_value("106");
     }
-    function set_buzz($value)
+    function setBuzz($value)
     {
         return $this->_set_value("106", $value);
     }
-    function bannerURL()
+    function getBannerURL()
     {
         return $this->_get_value("107");
     }
-    function set_bannerURL($value)
+    function setBannerURL($value)
     {
         return $this->_set_value("107", $value);
     }
-    function img()
+    function getImg()
     {
         return $this->_get_value("120");
     }
-    function set_img($value)
+    function setImg($value)
     {
         return $this->_set_value("120", $value);
     }
-    function buttons($offset)
+    function getButtons($offset)
     {
         return $this->_get_arr_value("121", $offset);
     }
-    function add_buttons()
+    function addButtons()
     {
         return $this->_add_arr_value("121");
     }
-    function set_buttons($index, $value)
+    function setButtons($index, $value)
     {
         $this->_set_arr_value("121", $index, $value);
     }
@@ -209,219 +214,219 @@ class ActionChain extends PBMessage
     {
         return $this->_get_arr_size("121");
     }
-    function appid()
+    function getAppid()
     {
         return $this->_get_value("140");
     }
-    function set_appid($value)
+    function setAppid($value)
     {
         return $this->_set_value("140", $value);
     }
-    function appstartupid()
+    function getAppstartupid()
     {
         return $this->_get_value("141");
     }
-    function set_appstartupid($value)
+    function setAppstartupid($value)
     {
         return $this->_set_value("141", $value);
     }
-    function autostart()
+    function getAutostart()
     {
         return $this->_get_value("142");
     }
-    function set_autostart($value)
+    function setAutostart($value)
     {
         return $this->_set_value("142", $value);
     }
-    function failedAction()
+    function getFailedAction()
     {
         return $this->_get_value("143");
     }
-    function set_failedAction($value)
+    function setFailedAction($value)
     {
         return $this->_set_value("143", $value);
     }
-    function url()
+    function getUrl()
     {
         return $this->_get_value("160");
     }
-    function set_url($value)
+    function setUrl($value)
     {
         return $this->_set_value("160", $value);
     }
-    function withcid()
+    function getWithcid()
     {
         return $this->_get_value("161");
     }
-    function set_withcid($value)
+    function setWithcid($value)
     {
         return $this->_set_value("161", $value);
     }
-    function is_withnettype()
+    function getIsWithnettype()
     {
         return $this->_get_value("162");
     }
-    function set_is_withnettype($value)
+    function setIswithnettype($value)
     {
         return $this->_set_value("162", $value);
     }
-    function address()
+    function getAddress()
     {
         return $this->_get_value("180");
     }
-    function set_address($value)
+    function setAddress($value)
     {
         return $this->_set_value("180", $value);
     }
-    function content()
+    function getContent()
     {
         return $this->_get_value("181");
     }
-    function set_content($value)
+    function setContent($value)
     {
         return $this->_set_value("181", $value);
     }
-    function ct()
+    function getCt()
     {
         return $this->_get_value("182");
     }
-    function set_ct($value)
+    function setCt($value)
     {
         return $this->_set_value("182", $value);
     }
-    function flag()
+    function getFlag()
     {
         return $this->_get_value("183");
     }
-    function set_flag($value)
+    function setFlag($value)
     {
         return $this->_set_value("183", $value);
     }
-    function successedAction()
+    function getSuccessedAction()
     {
         return $this->_get_value("200");
     }
-    function set_successedAction($value)
+    function setSuccessedAction($value)
     {
         return $this->_set_value("200", $value);
     }
-    function uninstalledAction()
+    function getUninstalledAction()
     {
         return $this->_get_value("201");
     }
-    function set_uninstalledAction($value)
+    function setUninstalledAction($value)
     {
         return $this->_set_value("201", $value);
     }
-    function name()
+    function getName()
     {
         return $this->_get_value("220");
     }
-    function set_name($value)
+    function setName($value)
     {
         return $this->_set_value("220", $value);
     }
-    function autoInstall()
+    function getAutoInstall()
     {
         return $this->_get_value("223");
     }
-    function set_autoInstall($value)
+    function setAutoInstall($value)
     {
         return $this->_set_value("223", $value);
     }
-    function wifiAutodownload()
+    function getWifiAutodownload()
     {
         return $this->_get_value("225");
     }
-    function set_wifiAutodownload($value)
+    function setWifiAutodownload($value)
     {
         return $this->_set_value("225", $value);
     }
-    function forceDownload()
+    function getForceDownload()
     {
         return $this->_get_value("226");
     }
-    function set_forceDownload($value)
+    function setForceDownload($value)
     {
         return $this->_set_value("226", $value);
     }
-    function showProgress()
+    function getShowProgress()
     {
         return $this->_get_value("227");
     }
-    function set_showProgress($value)
+    function setShowProgress($value)
     {
         return $this->_set_value("227", $value);
     }
-    function post()
+    function getPost()
     {
         return $this->_get_value("241");
     }
-    function set_post($value)
+    function setPost($value)
     {
         return $this->_set_value("241", $value);
     }
-    function headers()
+    function getHeaders()
     {
         return $this->_get_value("242");
     }
-    function set_headers($value)
+    function setHeaders($value)
     {
         return $this->_set_value("242", $value);
     }
-    function groupable()
+    function getGroupable()
     {
         return $this->_get_value("260");
     }
-    function set_groupable($value)
+    function setGroupable($value)
     {
         return $this->_set_value("260", $value);
     }
-    function mmsTitle()
+    function getMmsTitle()
     {
         return $this->_get_value("280");
     }
-    function set_mmsTitle($value)
+    function setMmsTitle($value)
     {
         return $this->_set_value("280", $value);
     }
-    function mmsURL()
+    function getMmsURL()
     {
         return $this->_get_value("281");
     }
-    function set_mmsURL($value)
+    function setMmsURL($value)
     {
         return $this->_set_value("281", $value);
     }
-    function preload()
+    function getPreload()
     {
         return $this->_get_value("300");
     }
-    function set_preload($value)
+    function setPreload($value)
     {
         return $this->_set_value("300", $value);
     }
-    function taskid()
+    function getTaskid()
     {
         return $this->_get_value("320");
     }
-    function set_taskid($value)
+    function setTaskid($value)
     {
         return $this->_set_value("320", $value);
     }
-    function duration()
+    function getDuration()
     {
         return $this->_get_value("340");
     }
-    function set_duration($value)
+    function setDuration($value)
     {
         return $this->_set_value("340", $value);
     }
-    function date()
+    function getDate()
     {
         return $this->_get_value("360");
     }
-    function set_date($value)
+    function setDate($value)
     {
         return $this->_set_value("360", $value);
     }

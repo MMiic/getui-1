@@ -9,9 +9,9 @@ class SingleBatchRequest extends PBMessage
   public function __construct($reader=null)
   {
     parent::__construct($reader);
-    $this->fields["1"] = "PBString";
+    $this->fields["1"] = "\\wh\\getui\\protobuf\\type\\PBString";
     $this->values["1"] = "";
-    $this->fields["2"] = "SingleBatchItem";
+    $this->fields["2"] = "\\wh\\getui\\core\\SingleBatchItem";
     $this->values["2"] = array();
   }
   function batchId()

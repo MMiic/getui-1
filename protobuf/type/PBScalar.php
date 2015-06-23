@@ -1,7 +1,7 @@
 <?php
-namespace wh\protobuf\type;
+namespace wh\getui\protobuf\type;
 
-use wh\protobuf\PBMessage;
+use wh\getui\protobuf\PBMessage;
 
 /**
  * @author Nikolai Kordulla

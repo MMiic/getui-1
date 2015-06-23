@@ -3,39 +3,42 @@ namespace wh\getui\core;
 
 class IGtTarget
 {
-	var  $appId;
+	private $appId;
  
-	var $clientId;
+	private $clientId;
 
-    var $alias;
- 
+    private $alias;
 
 	public function __construct()
 	{
-
 	}
 
-	function get_appId()
+    public function getAppId()
 	{
 		return $this->appId;
 	}
-	function set_appId($appId)
+
+    public function setAppId($appId)
 	{
 		return $this->appId = $appId;
 	}
-	function get_clientId()
+
+    public function getClientId()
 	{
 		return $this->clientId;
 	}
-	function set_clientId($clientId)
+
+    public function setClientId($clientId)
 	{
 		return $this->clientId = $clientId;
 	}
-    function set_alias($alias)
+
+    public function setAlias($alias)
     {
         return $this->alias = $alias;
     }
-    function get_alias()
+
+    public function getAlias()
     {
         return $this->alias;
     }

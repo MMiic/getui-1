@@ -41,7 +41,7 @@ class IGtAPNPayload
             }
 
             if (sizeof($apsMap) == 0) {
-                throw new Exception("format error");
+                throw new \Exception("format error");
             }
             if ($this->contentAvailable > 0) {
                 $apsMap["content-available"] = $this->contentAvailable;
@@ -58,8 +58,8 @@ class IGtAPNPayload
             }
             $map["aps"] = $apsMap;
             return json_encode($map);
-        } catch (Exception $e) {
-            throw new Exception("create apn payload error", $e);
+        } catch (\Exception $e) {
+            throw new \Exception("create apn payload error", $e);
         }
     }
 

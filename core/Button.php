@@ -5,28 +5,28 @@ use wh\getui\protobuf\PBMessage;
 
 class Button extends PBMessage
 {
-    var $wired_type = PBMessage::WIRED_LENGTH_DELIMITED;
+    public $wired_type = PBMessage::WIRED_LENGTH_DELIMITED;
     public function __construct($reader=null)
     {
         parent::__construct($reader);
-        $this->fields["1"] = "PBString";
+        $this->fields["1"] = "\\wh\\getui\\protobuf\\type\\PBString";
         $this->values["1"] = "";
-        $this->fields["2"] = "PBInt";
+        $this->fields["2"] = "\\wh\\getui\\protobuf\\type\\PBInt";
         $this->values["2"] = "";
     }
-    function text()
+    function getText()
     {
         return $this->_get_value("1");
     }
-    function set_text($value)
+    function setText($value)
     {
         return $this->_set_value("1", $value);
     }
-    function next()
+    function getNext()
     {
         return $this->_get_value("2");
     }
-    function set_next($value)
+    function setNext($value)
     {
         return $this->_set_value("2", $value);
     }

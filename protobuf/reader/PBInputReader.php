@@ -1,7 +1,7 @@
 <?php
-namespace wh\protobuf\reader;
+namespace wh\getui\protobuf\reader;
 
-use wh\protobuf\encoding\PBBase128;
+use wh\getui\protobuf\encoding\PBBase128;
 
 /**
  * Abstract class for an input reader

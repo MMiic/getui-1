@@ -9,19 +9,19 @@ class OSMessage extends PBMessage
   public function __construct($reader=null)
   {
     parent::__construct($reader);
-    $this->fields["2"] = "PBBool";
+    $this->fields["2"] = "\\wh\\getui\\protobuf\\type\\PBBool";
     $this->values["2"] = "";
-    $this->fields["3"] = "PBInt";
+    $this->fields["3"] = "\\wh\\getui\\protobuf\\type\\PBInt";
     $this->values["3"] = "";
-    $this->fields["4"] = "Transparent";
+    $this->fields["4"] = "\\wh\\getui\\core\\Transparent";
     $this->values["4"] = "";
-    $this->fields["5"] = "PBString";
+    $this->fields["5"] = "\\wh\\getui\\protobuf\\type\\PBString";
     $this->values["5"] = "";
-    $this->fields["6"] = "PBInt";
+    $this->fields["6"] = "\\wh\\getui\\protobuf\\type\\PBInt";
     $this->values["6"] = "";
-    $this->fields["7"] = "PBInt";
+    $this->fields["7"] = "\\wh\\getui\\protobuf\\type\\PBInt";
     $this->values["7"] = "";
-    $this->fields["8"] = "PBInt";
+    $this->fields["8"] = "\\wh\\getui\\protobuf\\type\\PBInt";
     $this->values["8"] = "";
   }
   function isOffline()

@@ -1,9 +1,10 @@
 <?php
 namespace wh\getui\template;
 
-use wh\getui\utils\ApnsUtils;
 use wh\getui\core\IGtAPNPayload;
 use wh\getui\core\Transparent;
+use wh\getui\core\PushInfo;
+use wh\getui\core\DictionaryAlertMsg;
 
 class IGtBaseTemplate
 {
@@ -12,25 +13,25 @@ class IGtBaseTemplate
     var $pushInfo;
     var $duration;
 
-    function get_transparent()
+    function getTransparent()
     {
         $transparent = new Transparent();
-        $transparent->set_id('');
-        $transparent->set_messageId('');
-        $transparent->set_taskId('');
-        $transparent->set_action('pushmessage');
-        $transparent->set_pushInfo($this->get_pushInfo());
-        $transparent->set_appId($this->appId);
-        $transparent->set_appKey($this->appkey);
+        $transparent->setId('');
+        $transparent->setMessageId('');
+        $transparent->setTaskId('');
+        $transparent->setAction('pushmessage');
+        $transparent->setPushInfo($this->getPushInfo());
+        $transparent->setAppId($this->appId);
+        $transparent->setAppKey($this->appkey);
 
         $actionChainList = $this->getActionChain();
 
         foreach ($actionChainList as $index => $actionChain) {
-            $transparent->add_actionChain();
-            $transparent->set_actionChain($index, $actionChain);
+            $transparent->addActionChain();
+            $transparent->setActionChain($index, $actionChain);
         }
 
-        $transparent->append_condition($this->get_durcondition());
+        $transparent->appendCondition($this->getDurcondition());
 
         return $transparent->SerializeToString();
 
@@ -42,17 +43,17 @@ class IGtBaseTemplate
         return $list = array();
     }
 
-    function get_durcondition()
+    function getDurcondition()
     {
         return "duration=" . $this->duration;
     }
 
-    function get_duration()
+    function getDuration()
     {
         return $this->duration;
     }
 
-    function set_duration($begin, $end)
+    function setDuration($begin, $end)
 
     {
         date_default_timezone_set('asia/shanghai');
@@ -63,30 +64,30 @@ class IGtBaseTemplate
         $ss = (string)strtotime($begin) * 1000;
         $e = (string)strtotime($end) * 1000;
         if ($ss <= 0 || $e <= 0)
-            throw new Exception("DateFormat: yyyy-MM-dd HH:mm:ss");
+            throw new \Exception("DateFormat: yyyy-MM-dd HH:mm:ss");
         if ($ss > $e)
-            throw new Exception("startTime should be smaller than endTime");
+            throw new \Exception("startTime should be smaller than endTime");
 
         $this->duration = $ss . "-" . $e;
 
     }
 
-    function  get_transmissionContent()
+    function getTransmissionContent()
     {
         return null;
     }
 
-    function  get_pushType()
+    function getPushType()
     {
         return null;
     }
-
-    function get_actionChain()
+    /*
+    function getActionChain()
     {
         return null;
-    }
+    }*/
 
-    function get_pushInfo()
+    function getPushInfo()
     {
         if ($this->pushInfo == null) {
             $this->pushInfo = new PushInfo();
@@ -97,7 +98,7 @@ class IGtBaseTemplate
         return $this->pushInfo;
     }
 
-    function set_pushInfo($actionLocKey, $badge, $message, $sound, $payload, $locKey, $locArgs, $launchImage, $contentAvailable = 0)
+    function setPushInfo($actionLocKey, $badge, $message, $sound, $payload, $locKey, $locArgs, $launchImage, $contentAvailable = 0)
     {
         $this->pushInfo = new PushInfo();
         $this->pushInfo->set_invalidAPN(true);
@@ -144,10 +145,10 @@ class IGtBaseTemplate
         {
             $apn->add_customMsg("payload", $payload);
         }
-        $this->set_apnInfo($apn);
+        $this->setApnInfo($apn);
     }
 
-    function set_apnInfo($payload)
+    function setApnInfo($payload)
     {
         if ($payload == null) {
             return;
@@ -158,19 +159,19 @@ class IGtBaseTemplate
         }
         $len = strlen($payload);
         if ($len > IGtAPNPayload::$PAYLOAD_MAX_BYTES) {
-            throw new Exception("APN payload length overlength (" . $len . ">" . IGtAPNPayload::$PAYLOAD_MAX_BYTES . ")");
+            throw new \Exception("APN payload length overlength (" . $len . ">" . IGtAPNPayload::$PAYLOAD_MAX_BYTES . ")");
         }
         $this->pushInfo = new PushInfo();
         $this->pushInfo->set_apnJson($payload);
         $this->pushInfo->set_invalidAPN(false);
     }
 
-    function  set_appId($appId)
+    function setAppId($appId)
     {
         $this->appId = $appId;
     }
 
-    function  set_appkey($appkey)
+    function setAppkey($appkey)
     {
         $this->appkey = $appkey;
     }

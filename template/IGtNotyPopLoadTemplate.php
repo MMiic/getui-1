@@ -1,214 +1,239 @@
 <?php
 namespace wh\getui\template;
 
+use wh\getui\core\ActionChainType;
+use wh\getui\core\ActionChain;
+use wh\getui\core\Button;
+use wh\getui\core\AppStartUp;
+
 class IGtNotyPopLoadTemplate extends IGtBaseTemplate
 {
 	/**
 	 * 通知栏图标
 	 */
-	var $notyIcon;
+	private $notyIcon;
 	/**
 	 * 通知栏标题
 	 */
-	var $logoURL;
-	 
-	var $notyTitle;
+    private $logoURL;
+
+    private $notyTitle;
 	/**
 	 * 通知栏内容
 	 */
-	var $notyContent;
+    private $notyContent;
 	/**
 	 * 通知是否可清楚
 	 */
-	var $isCleared = true;
+    private $isCleared = true;
 	/**
 	 * 是否响铃
 	 */
-	var $isBelled = true;
+    private $isBelled = true;
 	/**
 	 * 是否震动
 	 */
-	var $isVibrationed = true;
+    private $isVibrationed = true;
 
 	/**
 	 * 弹框标题
 	 */
-	var $popTitle;
+    private $popTitle;
 	/**
 	 * 弹框内容
 	 */
-	var $popContent;
+    private $popContent;
 
 	/**
 	 * 弹框图片
 	 */
-	var $popImage;
+    private $popImage;
 	/**
 	 * 左边按钮名称
 	 */
-	var $popButton1;
+    private $popButton1;
 	/**
 	 * 右边按钮名称
 	 */
-	var $popButton2;
+    private $popButton2;
 
 	/**
 	 * 下载图标
 	 */
-	var $loadIcon;
+    private $loadIcon;
 
 	/**
 	 * 下载标题
 	 */
-	var $loadTitle;
+    private $loadTitle;
 
 	/**
 	 * 下载地址
 	 */
-	var $loadUrl;
+    private $loadUrl;
 	/**
 	 * 是否自动安装
 	 */
-	var $isAutoInstall = false;
+    private $isAutoInstall = false;
 	/**
 	 * 是否激活
 	 */
-	var $isActived = false;
+    private $isActived = false;
 
-    var $symbianMark="";
-    var $androidMark="";
-    var $iosMark="";
+    private $symbianMark="";
+    private $androidMark="";
+    private $iosMark="";
 	
-	public function  getActionChain() {
+	public function getActionChain() {
 		$actionChains = array();
 		//设置actionchain
 		$actionChain1 = new ActionChain();
-		$actionChain1->set_actionId(1);
-		$actionChain1->set_type(ActionChain_Type::refer);
-		$actionChain1->set_next(10000);
+		$actionChain1->setActionId(1);
+		$actionChain1->setType(ActionChainType::refer);
+		$actionChain1->setNext(10000);
 		//通知
 		$actionChain2 = new ActionChain();
-		$actionChain2->set_actionId(10000);
-		$actionChain2->set_type(ActionChain_Type::notification);
-		$actionChain2->set_title($this->notyTitle);
-		$actionChain2->set_text($this->notyContent);
-		$actionChain2->set_logo($this->notyIcon);
-		$actionChain2->set_logoURL($this->logoURL);
-		$actionChain2->set_ring($this->isBelled);
-		$actionChain2->set_clearable($this->isCleared);
-		$actionChain2->set_buzz($this->isVibrationed);
-		$actionChain2->set_next(10010);
+		$actionChain2->setActionId(10000);
+		$actionChain2->setType(ActionChainType::notification);
+		$actionChain2->setTitle($this->notyTitle);
+		$actionChain2->setText($this->notyContent);
+		$actionChain2->setLogo($this->notyIcon);
+		$actionChain2->setLogoURL($this->logoURL);
+		$actionChain2->setRing($this->isBelled);
+		$actionChain2->setClearable($this->isCleared);
+		$actionChain2->setBuzz($this->isVibrationed);
+		$actionChain2->setNext(10010);
 		
 		$actionChain3 = new ActionChain();
-		$actionChain3->set_actionId(10010);
-		$actionChain3->set_type(ActionChain_Type::refer);
-		$actionChain3->set_next(10020);
+		$actionChain3->setActionId(10010);
+		$actionChain3->setType(ActionChainType::refer);
+		$actionChain3->setNext(10020);
 		
 		//弹框按钮
 		$button1 = new Button();
-		$button1->set_text($this->popButton1);
-		$button1->set_next(10040);
+		$button1->setText($this->popButton1);
+		$button1->setNext(10040);
 		$button2 = new Button();
-		$button2->set_text($this->popButton2);
-		$button2->set_next(100);
+		$button2->setText($this->popButton2);
+		$button2->setNext(100);
 		
 		//弹框
 		$actionChain4 = new ActionChain();
-		$actionChain4->set_actionId(10020);
-		$actionChain4->set_type(ActionChain_Type::popup);
-		$actionChain4->set_title($this->popTitle);
-		$actionChain4->set_text($this->popContent);
-		$actionChain4->set_img($this->popImage);
-		$actionChain4->set_buttons(0,$button1);
-		$actionChain4->set_buttons(1,$button2);
-		$actionChain4->set_next(6);
+		$actionChain4->setActionId(10020);
+		$actionChain4->setType(ActionChainType::popup);
+		$actionChain4->setTitle($this->popTitle);
+		$actionChain4->setText($this->popContent);
+		$actionChain4->setImg($this->popImage);
+		$actionChain4->setButtons(0,$button1);
+		$actionChain4->setButtons(1,$button2);
+		$actionChain4->setNext(6);
 		
 		//下载
 		//appstartupid
 		$appStartUp = new AppStartUp();
-		$appStartUp->set_android($this->androidMark);
-		$appStartUp->set_Ios($this->iosMark);
-		$appStartUp->set_symbia($this->symbianMark);
+		$appStartUp->setAndroid($this->androidMark);
+		$appStartUp->setIos($this->iosMark);
+		$appStartUp->setSymbia($this->symbianMark);
 		$actionChain5 = new ActionChain();
-		$actionChain5->set_actionId(10040);
-		$actionChain5->set_type(ActionChain_Type::appdownload);
-		$actionChain5->set_name($this->loadTitle);
-		$actionChain5->set_url($this->loadUrl);
-		$actionChain5->set_logo($this->loadIcon);
-		$actionChain5->set_autoInstall($this->isAutoInstall);
-		$actionChain5->set_autostart($this->isActived);
-		$actionChain5->set_appstartupid($appStartUp);
-		$actionChain5->set_next(6);
+		$actionChain5->setActionId(10040);
+		$actionChain5->setType(ActionChainType::appdownload);
+		$actionChain5->setName($this->loadTitle);
+		$actionChain5->setUrl($this->loadUrl);
+		$actionChain5->setLogo($this->loadIcon);
+		$actionChain5->setAutoInstall($this->isAutoInstall);
+		$actionChain5->setAutostart($this->isActived);
+		$actionChain5->setAppstartupid($appStartUp);
+		$actionChain5->setNext(6);
 		
 		$actionChain6 = new ActionChain();
-		$actionChain6->set_actionId(100);
-		$actionChain6->set_type(ActionChain_Type::eoa);
+		$actionChain6->setActionId(100);
+		$actionChain6->setType(ActionChainType::eoa);
 		
-		array_push($actionChains, $actionChain1,$actionChain2,$actionChain3,$actionChain4,$actionChain5,$actionChain6);
+		array_push($actionChains, $actionChain1, $actionChain2, $actionChain3, $actionChain4, $actionChain5, $actionChain6);
 		return $actionChains;
 	}
 	
-	function  set_notyIcon($notyIcon) {
+	function  setNotyIcon($notyIcon) {
 		$this->notyIcon = $notyIcon;
 	}
-	function  set_notyTitle($notyTitle) {
+
+	function  setNotyTitle($notyTitle) {
 		$this->notyTitle = $notyTitle;
 	}
-	function  set_logoURL($logoURL) {
+
+	function  setLogoURL($logoURL) {
 		$this->logoURL = $logoURL;
 	}
-	function  set_notyContent($notyContent) {
+
+	function  setNotyContent($notyContent) {
 		$this->notyContent = $notyContent;
 	}
-	function  set_isCleared($isCleared) {
+
+	function  setIsCleared($isCleared) {
 		$this->isCleared = $isCleared;
 	}
-	function  set_isBelled($isBelled) {
+
+	function  setIsBelled($isBelled) {
 		$this->isBelled = $isBelled;
 	}
-	function  set_isVibrationed($isVibrationed) {
+
+	function  setIsVibrationed($isVibrationed) {
 		$this->isVibrationed = $isVibrationed;
 	}
-	function  set_popTitle($popTitle) {
+
+	function  setPopTitle($popTitle) {
 		$this->popTitle = $popTitle;
 	}
-	function  set_popContent($popContent) {
+
+	function  setPopContent($popContent) {
 		$this->popContent = $popContent;
 	}
-	function  set_popImage($popImage) {
+
+	function  setPopImage($popImage) {
 		$this->popImage = $popImage;
 	}
-	function  set_popButton1($popButton1) {
+
+	function  setPopButton1($popButton1) {
 		$this->popButton1 = $popButton1;
 	}
-	function  set_popButton2($popButton2) {
+
+	function  setPopButton2($popButton2) {
 		$this->popButton2 = $popButton2;
 	}
-	function  set_loadIcon($loadIcon) {
+
+	function  setLoadIcon($loadIcon) {
 		$this->loadIcon = $loadIcon;
 	}
-	function  set_loadTitle($loadTitle) {
+
+	function  setLoadTitle($loadTitle) {
 		$this->loadTitle = $loadTitle;
 	}
-	function  set_loadUrl($loadUrl) {
+
+	function  setLoadUrl($loadUrl) {
 		$this->loadUrl = $loadUrl;
 	}
-	function  set_isAutoInstall($isAutoInstall) {
+
+	function  setIsAutoInstall($isAutoInstall) {
 		$this->isAutoInstall = $isAutoInstall;
 	}
-	function  set_isActived($isActived) {
+
+	function  setIsActived($isActived) {
 		$this->isActived = $isActived;
 	}
-    function set_symbianMark($symbianMark){
+
+    function setSymbianMark($symbianMark){
         $this->symbianMark = $symbianMark;
     }
-    function set_androidMark($androidMark){
+
+    function setAndroidMark($androidMark){
         $this->androidMark = $androidMark;
     }
-    function set_iosMark($iosMark){
+
+    function setIosMark($iosMark){
         $this->iosMark = $iosMark;
     }
-	function get_pushType(){
+
+	function getPushType(){
 		return "NotyPopLoadTemplate";
 	}
 }

@@ -10,21 +10,21 @@ class MMPMessage extends PBMessage
   public function __construct($reader=null)
   {
     parent::__construct($reader);
-    $this->fields["2"] = "Transparent";
+    $this->fields["2"] = "\\wh\\getui\\core\\Transparent";
     $this->values["2"] = "";
-    $this->fields["3"] = "PBString";
+    $this->fields["3"] = "\\wh\\getui\\protobuf\\type\\PBString";
     $this->values["3"] = "";
-    $this->fields["4"] = "PBInt";
+    $this->fields["4"] = "\\wh\\getui\\protobuf\\type\\PBInt";
     $this->values["4"] = "";
-    $this->fields["5"] = "PBInt";
+    $this->fields["5"] = "\\wh\\getui\\protobuf\\type\\PBInt";
     $this->values["5"] = "";
-    $this->fields["6"] = "PBInt";
+    $this->fields["6"] = "\\wh\\getui\\protobuf\\type\\PBInt";
     $this->values["6"] = "";
-    $this->fields["7"] = "PBBool";
+    $this->fields["7"] = "\\wh\\getui\\protobuf\\type\\PBBool";
     $this->values["7"] = "";
     $this->values["7"] = new PBBool();
     $this->values["7"]->value = true;
-    $this->fields["8"] = "PBInt";
+    $this->fields["8"] = "\\wh\\getui\\protobuf\\type\\PBInt";
     $this->values["8"] = "";
   }
   function transparent()

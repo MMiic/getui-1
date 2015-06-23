@@ -1,7 +1,7 @@
 <?php
 namespace wh\getui\exception;
 
-class RequestException extends Exception
+class RequestException extends \Exception
 {
     var $requestId;
 

@@ -11,14 +11,12 @@ class ApiUrlRespectUtils
 
         if ($hosts == null || count($hosts)==0)
         {
-            throw new Exception("Hosts cann't be null or size must greater than 0");
+            throw new \Exception("Hosts cann't be null or size must greater than 0");
         }
-        if(ApiUrlRespectUtils::$appkeyAndFasterHost[$appkey] != null && count(array_diff($hosts,ApiUrlRespectUtils::$appKeyAndHost[$appkey])) == 0)
+        if(isset(ApiUrlRespectUtils::$appkeyAndFasterHost[$appkey]) && count(array_diff($hosts,ApiUrlRespectUtils::$appKeyAndHost[$appkey])) == 0)
         {
             return ApiUrlRespectUtils::$appkeyAndFasterHost[$appkey];
-        }
-        else
-        {
+        } else {
             $fastest = ApiUrlRespectUtils::getFastestRealTime($hosts);
             ApiUrlRespectUtils::$appKeyAndHost[$appkey] = $hosts;
             ApiUrlRespectUtils::$appkeyAndFasterHost[$appkey] = $fastest;
@@ -37,7 +35,7 @@ class ApiUrlRespectUtils
             $context = stream_context_create($opts);
             try {
                 $homepage = file_get_contents($hosts[$i], false, $context);
-            } catch (Exception $e) {
+            } catch (\Exception $e) {
                 echo($e);
             }
             $ends = array_sum(explode(" ",microtime()));

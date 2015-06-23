@@ -1,6 +1,9 @@
 <?php 
 namespace wh\getui\template;
 
+use wh\getui\core\ActionChain;
+use wh\getui\core\ActionChainType;
+
 class IGtLinkTemplate extends IGtBaseTemplate
 {
 
@@ -47,82 +50,82 @@ class IGtLinkTemplate extends IGtBaseTemplate
 		
 		// 设置actionChain
 		$actionChain1 = new ActionChain();
-		$actionChain1->set_actionId(1);
-  		$actionChain1->set_type(ActionChain_Type::refer);
-		$actionChain1->set_next(10000);
+		$actionChain1->setActionId(1);
+  		$actionChain1->setType(ActionChainType::refer);
+		$actionChain1->setNext(10000);
 		
 		//通知
 		$actionChain2 = new ActionChain();
-		$actionChain2->set_actionId(10000);
-		$actionChain2->set_type(ActionChain_Type::notification);
-		$actionChain2->set_title($this->title);
-		$actionChain2->set_text($this->text);
-		$actionChain2->set_logo($this->logo);
-		$actionChain2->set_logoURL($this->logoURL);
-		$actionChain2->set_ring($this->isRing ? true : false);
-		$actionChain2->set_clearable($this->isClearable ? true : false);
-		$actionChain2->set_buzz($this->isVibrate ? true : false);
-		$actionChain2->set_next(10010);
+		$actionChain2->setActionId(10000);
+		$actionChain2->setType(ActionChainType::notification);
+		$actionChain2->setTitle($this->title);
+		$actionChain2->setText($this->text);
+		$actionChain2->setLogo($this->logo);
+		$actionChain2->setLogoURL($this->logoURL);
+		$actionChain2->setRing($this->isRing ? true : false);
+		$actionChain2->setClearable($this->isClearable ? true : false);
+		$actionChain2->setBuzz($this->isVibrate ? true : false);
+		$actionChain2->setNext(10010);
 
 		
 		//goto
 		$actionChain3 = new ActionChain();
-		$actionChain3->set_actionId(10010);
-		$actionChain3->set_type(ActionChain_Type::refer);
-		$actionChain3->set_next(10030);
+		$actionChain3->setActionId(10010);
+		$actionChain3->setType(ActionChainType::refer);
+		$actionChain3->setNext(10030);
 	
 
 		//启动web
 		$actionChain4 = new ActionChain();
-		$actionChain4->set_actionId(10030);
-		$actionChain4->set_type(ActionChain_Type::startweb);
-		$actionChain4->set_url($this->url);
-		$actionChain4->set_next(100);
+		$actionChain4->setActionId(10030);
+		$actionChain4->setType(ActionChainType::startweb);
+		$actionChain4->setUrl($this->url);
+		$actionChain4->setNext(100);
 
 
 		//结束
 		$actionChain5 = new ActionChain();
-		$actionChain5->set_actionId(100);
-		$actionChain5->set_type(ActionChain_Type::eoa);
+		$actionChain5->setActionId(100);
+		$actionChain5->setType(ActionChainType::eoa);
  
-		array_push($actionChains, $actionChain1,$actionChain2,$actionChain3,$actionChain4,$actionChain5);
+		array_push($actionChains, $actionChain1, $actionChain2, $actionChain3, $actionChain4, $actionChain5);
 
 		return $actionChains;
 	}
 
-	function  get_pushType() {
+	function  getPushType() {
 		return 'LinkMsg';
 	}
 
-	function  set_text($text) {
+	function  setText($text) {
 		$this->text = $text;
 	}
 
-	function  set_title($title) {
+	function  setTitle($title) {
 		$this->title = $title;
 	}
 
-	function  set_logo($logo) {
+	function  setLogo($logo) {
 		$this->logo = $logo;
 	}
 	
-	function  set_logoURL($logoURL) {
+	function  setLogoURL($logoURL) {
 		$this->logoURL = $logoURL;
 	}
 
-	function  set_url($url) {
+	function  setUrl($url) {
 		$this->url = $url;
 	}
 
-	function  set_isRing($isRing) {
+	function  setIsRing($isRing) {
 		$this->isRing = $isRing;
 	}
 
-	function  set_isVibrate($isVibrate) {
+	function  setIsVibrate($isVibrate) {
 		$this->isVibrate = $isVibrate;
 	}
 
-	function  set_isClearable($isClearable) {
+	function  setIsClearable($isClearable) {
 		$this->isClearable = $isClearable;
 	}
 }

@@ -1,6 +1,8 @@
 <?php
 namespace wh\getui\utils;
 
+use wh\getui\exception\RequestException;
+
 class HttpManager
 {
     private static function httpPost($url, $data, $gzip, $action)
@@ -41,7 +43,7 @@ class HttpManager
 
     public static function httpPostJson($url, $params, $gzip)
     {
-        if(is_null($params["version"]) )
+        if(!isset($params["version"]) )
         {
             $params["version"] = GTConfig::getSDKVersion();
         }
@@ -53,7 +55,7 @@ class HttpManager
             LogUtils::debug("发送请求 post:{$data} return:{$resp}");
             $result = json_decode($resp, true);
             return $result;
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             throw new RequestException($params["requestId"],"httpPost:[".$url."] [" .$data." ] [ ".$result."]:",$e);
         }
     }

@@ -9,11 +9,11 @@ class PushOSSingleMessage extends PBMessage
   public function __construct($reader=null)
   {
     parent::__construct($reader);
-    $this->fields["1"] = "PBString";
+    $this->fields["1"] = "\\wh\\getui\\protobuf\\type\\PBString";
     $this->values["1"] = "";
-    $this->fields["2"] = "OSMessage";
+    $this->fields["2"] = "\\wh\\getui\\core\\OSMessage";
     $this->values["2"] = "";
-    $this->fields["3"] = "Target";
+    $this->fields["3"] = "\\wh\\getui\\core\\Target";
     $this->values["3"] = "";
   }
   function seqId()

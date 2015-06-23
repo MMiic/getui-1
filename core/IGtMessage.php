@@ -3,53 +3,60 @@ namespace wh\getui\core;
 
 class IGtMessage
 {
-	var  $isOffline;
-	/*
-	 * 过多久该消息离线失效（单位秒） 支持1-72小时*3600秒，默认1小时
-	 */
-	var $offlineExpireTime;
+    private $isOffline;
+    /*
+     * 过多久该消息离线失效（单位秒） 支持1-72小时*3600秒，默认1小时
+     */
+    private $offlineExpireTime;
 
     /**
      * 0:联网方式不限;1:仅wifi;2:仅4G/3G/2G
      */
-    var $pushNetWorkType = 0;
+    private $pushNetWorkType = 0;
 
-	var $data;
+    private $data;
 
-	 public function __construct()
-	 {
+    public function __construct()
+    {
 
-	 }
+    }
 
-	function get_isOffline()
+	public function getIsOffline()
 	{
 		return $this->isOffline;
 	}
-	function set_isOffline($isOffline)
+
+    public function setIsOffline($isOffline)
 	{
 		return $this->isOffline = $isOffline;
 	}
-	function get_offlineExpireTime()
+
+    public function getOfflineExpireTime()
 	{
 		return $this->offlineExpireTime;
 	}
-	function set_offlineExpireTime($offlineExpireTime)
+
+    public function setOfflineExpireTime($offlineExpireTime)
 	{
 		return $this->offlineExpireTime = $offlineExpireTime;
 	}
-    function get_pushNetWorkType()
+
+    public function getPushNetWorkType()
     {
         return $this->pushNetWorkType;
     }
-    function set_pushNetWorkType($pushNetWorkType)
+
+    public function setPushNetWorkType($pushNetWorkType)
     {
         return $this->pushNetWorkType = $pushNetWorkType;
     }
-	function get_data()
+
+    public function getData()
 	{
 		return $this->data;
 	}
-	function set_data($data)
+
+    public function setData($data)
 	{
 		return $this->data = $data;
 	}

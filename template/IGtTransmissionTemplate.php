@@ -1,6 +1,10 @@
 <?php 
 namespace wh\getui\template;
 
+use wh\getui\core\ActionChain;
+use wh\getui\core\ActionChainType;
+use wh\getui\core\AppStartUp;
+
 class IGtTransmissionTemplate extends IGtBaseTemplate
 {
 
@@ -14,51 +18,51 @@ class IGtTransmissionTemplate extends IGtBaseTemplate
 	
 		// 设置actionChain
 		$actionChain1 = new ActionChain();
-		$actionChain1->set_actionId(1);
-		$actionChain1->set_type(ActionChain_Type::refer);
-		$actionChain1->set_next(10030);
+		$actionChain1->setActionId(1);
+		$actionChain1->setType(ActionChainType::refer);
+		$actionChain1->setNext(10030);
 	
 		//appStartUp
 		$appStartUp = new AppStartUp();
- 		$appStartUp->set_android("");
-		$appStartUp->set_symbia("");
-		$appStartUp->set_ios("");
+ 		$appStartUp->setAndroid("");
+		$appStartUp->setSymbia("");
+		$appStartUp->setIos("");
 
 		//启动app
 		$actionChain2 = new ActionChain();
-		$actionChain2->set_actionId(10030);
-		$actionChain2->set_type(ActionChain_Type::startapp);
-		$actionChain2->set_appid("");
-		$actionChain2->set_autostart($this->transmissionType == '1'? true : false);
-		$actionChain2->set_appstartupid($appStartUp);
-		$actionChain2->set_failedAction(100);
-		$actionChain2->set_next(100);
+		$actionChain2->setActionId(10030);
+		$actionChain2->setType(ActionChainType::startapp);
+		$actionChain2->setAppid("");
+		$actionChain2->setAutostart($this->transmissionType == '1'? true : false);
+		$actionChain2->setAppstartupid($appStartUp);
+		$actionChain2->setFailedAction(100);
+		$actionChain2->setNext(100);
 
 		//结束
 		$actionChain3 = new ActionChain();
-		$actionChain3->set_actionId(100);
-		$actionChain3->set_type(ActionChain_Type::eoa);
+		$actionChain3->setActionId(100);
+		$actionChain3->setType(ActionChainType::eoa);
 
  
-		array_push($actionChains, $actionChain1,$actionChain2,$actionChain3);
+		array_push($actionChains, $actionChain1, $actionChain2, $actionChain3);
 
 		return $actionChains;
 	}
 
-	function  get_transmissionContent() {
+	function  getTransmissionContent() {
 		return $this->transmissionContent;
 	}
 	
-	function  get_pushType() {
+	function  getPushType() {
 		return 'TransmissionMsg';
 	}
 
 
-	function  set_transmissionType($transmissionType) {
+	function  setTransmissionType($transmissionType) {
 		$this->transmissionType = $transmissionType;
 	}
 
-	function  set_transmissionContent($transmissionContent) {
+	function  setTransmissionContent($transmissionContent) {
 		$this->transmissionContent = $transmissionContent;
 	}
 }

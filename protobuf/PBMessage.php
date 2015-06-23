@@ -3,27 +3,12 @@
  * Including of all files needed to parse messages
  * @author Nikolai Kordulla
  */
-/*require_once(dirname(__FILE__). '/' . 'encoding/pb_base128.php');
-require_once(dirname(__FILE__). '/' . 'type/pb_scalar.php');
-require_once(dirname(__FILE__). '/' . 'type/pb_enum.php');
-require_once(dirname(__FILE__). '/' . 'type/pb_bytes.php');
-require_once(dirname(__FILE__). '/' . 'type/pb_string.php');
-require_once(dirname(__FILE__). '/' . 'type/pb_int.php');
-require_once(dirname(__FILE__). '/' . 'type/pb_bool.php');
-require_once(dirname(__FILE__). '/' . 'type/pb_signed_int.php');
-require_once(dirname(__FILE__). '/' . 'reader/pb_input_reader.php');
-require_once(dirname(__FILE__). '/' . 'reader/pb_input_string_reader.php');*/
+
 namespace wh\getui\protobuf;
 
 use wh\getui\protobuf\encoding\PBBase128;
-use wh\getui\protobuf\type\PBScalar;
-use wh\getui\protobuf\type\PBEnum;
-use wh\getui\protobuf\type\PBBytes;
 use wh\getui\protobuf\type\PBString;
 use wh\getui\protobuf\type\PBInt;
-use wh\getui\protobuf\type\PBBool;
-use wh\getui\protobuf\type\PBSignedInt;
-use wh\getui\protobuf\reader\PBInputReader;
 use wh\getui\protobuf\reader\PBInputStringReader;
 
 /**
@@ -47,7 +32,7 @@ abstract class PBMessage
     var $values = array();
 
     // type of the class
-    var $wired_type = 2;
+    public $wired_type = 2;
 
     // the value of a class
     var $value = null;
@@ -81,7 +66,7 @@ abstract class PBMessage
      * @param $number as decimal
      * @return array wired_type, field_type
      */
-    public function get_types($number)
+    public function getTypes($number)
     {
         $binstring = decbin($number);
         $types = array();

@@ -3,57 +3,69 @@ namespace wh\getui\core;
 
 class IGtAppMessage extends IGtMessage
 {
+	//array('','',..)
+	private $appIdList;
 	
 	//array('','',..)
-	var $appIdList;
+    private $phoneTypeList;
 	
 	//array('','',..)
-	var $phoneTypeList;
-	
-	//array('','',..)
-	var $provinceList;
+    private $provinceList;
 
-    var $tagList;
-    var $speed=0;
-	function __construct(){
+    private $tagList;
+    private $speed=0;
+
+	public function __construct()
+    {
 		parent::__construct();
 	}
 
-	function get_appIdList() {
+	public function getAppIdList()
+    {
 		return $this->appIdList;
 	}
 
-	function  set_appIdList($appIdList) {
+	public function setAppIdList($appIdList)
+    {
 		$this->appIdList = $appIdList;
 	}
 
-	function get_phoneTypeList() {
+    public function getPhoneTypeList()
+    {
 		return $this->phoneTypeList;
 	}
 
-	function  set_phoneTypeList($phoneTypeList) {
+    public function setPhoneTypeList($phoneTypeList)
+    {
 		$this->phoneTypeList = $phoneTypeList;
 	}
 
-	function  get_provinceList() {
+    public function getProvinceList()
+    {
 		return $this->provinceList;
 	}
 
-	function  set_provinceList($provinceList) {
+    public function setProvinceList($provinceList)
+    {
 		$this->provinceList = $provinceList;
 	}
 
-    function get_tagList() {
+    public function getTagList()
+    {
         return $this->tagList;
     }
-    function set_tagList($tagList) {
+
+    public function setTagList($tagList)
+    {
         $this->tagList = $tagList;
     }
-	function get_speed()
+
+    public function getSpeed()
 	{
 		return $this->speed;
 	}
-	function set_speed($speed)
+
+    public	function setSpeed($speed)
 	{
 		$this->speed=$speed;
 	}
