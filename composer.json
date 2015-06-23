@@ -1,0 +1,25 @@
+{
+    "name": "wh/getui",
+    "description": "getui",
+    "keywords": ["getui", "push notification"],
+    "license": "MIT",
+    "require-dev": {
+    },
+    "authors": [
+        {
+            "name": "Song Yeung",
+            "email": "netyum@163.com"
+        }
+    ],
+
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=5.3.0"	
+     },
+
+    "autoload": {
+    	"psr-4" : {
+    		"wh\\getui": "",
+    	}
+    }
+}
