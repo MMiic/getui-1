@@ -69,13 +69,13 @@ Class IGeTui
                 {
                     break;
                 }
-            } catch (Exception $e) {
+            } catch (\Exception $e) {
                 $ex = $e;
             }
         }
         if($urlList == null || count($urlList) <= 0)
         {
-            throw new Exception("Can not get hosts from ".$domainUrlList."|error:".$ex);
+            throw new \Exception("Can not get hosts from ".$domainUrlList."|error:".$ex);
         }
         return $urlList;
     }
@@ -95,8 +95,8 @@ Class IGeTui
                     {
                         $rep = HttpManager::httpPostJson($url, $data, $gzip);
                     }
-                } catch (Exception $e) {
-                    throw new Exception("连接异常".$e);
+                } catch (\Exception $e) {
+                    throw new \Exception("连接异常".$e);
                 }
             } else if('domain_error' == $rep['result']) {
                 $this->initOSDomain($rep["osList"]);
